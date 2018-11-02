@@ -3,6 +3,8 @@ Implementation of the paper A Learned Representation for Artistic Style
 
 
 ## Results
+Style = alpha * style2 + (1 - alpha) * style1
+
 |Content|Style1|Style2|
 |-|-|-|
 |![](https://github.com/MingtaoGuo/Conditional-Instance-Norm-for-n-Style-Transfer/blob/master/IMAGES/content.jpg)|![](https://github.com/MingtaoGuo/Conditional-Instance-Norm-for-n-Style-Transfer/blob/master/IMAGES/7.png)|![](https://github.com/MingtaoGuo/Conditional-Instance-Norm-for-n-Style-Transfer/blob/master/IMAGES/4.png)|
