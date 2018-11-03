@@ -17,7 +17,7 @@ parser.add_argument("--PATH_CONTENT", type=str, default="./MSCOCO//")
 parser.add_argument("--PATH_STYLE", type=str, default="./style_imgs//")
 parser.add_argument("--PATH_MODEL", type=str, default="./save_para//")#The path of the model's weights
 parser.add_argument("--PATH_VGG16", type=str, default="./vgg_para//")#The path of pretrained model of VGG16
-parser.add_argument("--IS_TRAINED", type=bool, default=True)
+parser.add_argument("--IS_TRAINED", type=bool, default=False)
 
 
 args = parser.parse_args()
