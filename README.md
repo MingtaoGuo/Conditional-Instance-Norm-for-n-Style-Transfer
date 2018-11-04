@@ -5,6 +5,25 @@ Implementation of the paper A Learned Representation for Artistic Style
 Simply implementing the paper [A Learned Representation for Artistic Style](https://arxiv.org/pdf/1610.07629.pdf) (Conditional instance normalization)
 ![](https://github.com/MingtaoGuo/Conditional-Instance-Norm-for-n-Style-Transfer/blob/master/IMAGES/cin.jpg)
 
+``` python
+def conditional_instance_norm(x, scope_bn, y1=None, y2=None, alpha=1):
+    mean, var = tf.nn.moments(x, axes=[1, 2], keep_dims=True)
+    if y1==None:
+        beta = tf.get_variable(name=scope_bn + 'beta', shape=[x.shape[-1]], initializer=tf.constant_initializer([0.]), trainable=True)  # label_nums x C
+        gamma = tf.get_variable(name=scope_bn + 'gamma', shape=[x.shape[-1]], initializer=tf.constant_initializer([1.]), trainable=True)  # label_nums x C
+    else:
+        beta = tf.get_variable(name=scope_bn+'beta', shape=[y1.shape[-1], x.shape[-1]], initializer=tf.constant_initializer([0.]), trainable=True) # label_nums x C
+        gamma = tf.get_variable(name=scope_bn+'gamma', shape=[y1.shape[-1], x.shape[-1]], initializer=tf.constant_initializer([1.]), trainable=True) # label_nums x C
+        beta1 = tf.matmul(y1, beta)
+        gamma1 = tf.matmul(y1, gamma)
+        beta2 = tf.matmul(y2, beta)
+        gamma2 = tf.matmul(y2, gamma)
+        beta = alpha * beta1 + (1. - alpha) * beta2
+        gamma = alpha * gamma1 + (1. - alpha) * gamma2
+    x = tf.nn.batch_normalization(x, mean, var, beta, gamma, 1e-10)
+    return x
+```
+
 ## How to use
 1. Download the dataset [MSCOCO](http://images.cocodataset.org/zips/train2014.zip), and unzip the dataset to the folder 'MSCOCO'
 ```
