@@ -1,7 +1,37 @@
 # Conditional-Instance-Norm-for-n-Style-Transfer
 Implementation of the paper A Learned Representation for Artistic Style
 
-# To be continued.
+## Introduction
+Simply implementing the paper [A Learned Representation for Artistic Style](https://arxiv.org/pdf/1610.07629.pdf) (Conditional instance normalization)
+![](https://github.com/MingtaoGuo/Conditional-Instance-Norm-for-n-Style-Transfer/blob/master/IMAGES/cin.jpg)
+
+## How to use
+1. Download the dataset [MSCOCO](http://images.cocodataset.org/zips/train2014.zip), and unzip the dataset to the folder 'MSCOCO'
+```
+├── imgs
+├── results
+├── save_imgs
+├── save_para
+├── style_imgs
+├── vgg_para
+├── MSCOCO
+     ├── COCO_train2014_000000000009.jpg
+     ├── COCO_train2014_000000000025.jpg
+     ├── COCO_train2014_000000000030.jpg
+     ├── COCO_train2014_000000000034.jpg
+     ├── COCO_train2014_000000000036.jpg
+     ├── COCO_train2014_000000000049.jpg
+     ...
+```
+2. Download the vgg16.npy, and put it into the folder 'vgg_para'
+3. Execute the python file 'main.py'
+
+## Requirement
+- python3.5
+- tensorflow1.4.0
+- scipy
+- numpy
+- pillow
 
 ## Results
 Style = alpha * style2 + (1 - alpha) * style1
